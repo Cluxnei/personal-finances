@@ -1,0 +1,12 @@
+{
+    "name": "cluxn/personal-finances",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kelvin Cluxnei",
+            "email": "cluxnei31@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
