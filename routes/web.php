@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::get('/{startDate}/{endDate}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/inflow', [HomeController::class, 'storeInflow'])->name('inflow.store');
+Route::post('/outflow', [HomeController::class, 'storeOutflow'])->name('outflow.store');
+Route::post('/category', [HomeController::class, 'storeCategory'])->name('category.store');
+
+Route::get('/', static function() {
+    return redirect()->route('home', [
+        'startDate' => now()->startOfMonth()->format('Y-m-d'),
+        'endDate' => now()->endOfMonth()->format('Y-m-d'),
+    ]);
 });
