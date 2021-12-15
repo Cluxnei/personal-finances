@@ -49,9 +49,8 @@ $(() => {
         backgroundColor: Object.keys(inflowsVsOutflows).map(key => randomColorForKey(key)),
     }]);
 
-
-    const inflowsVsOutflowsPerDayLabels = [...Object.keys(inflowsPerDay), ...Object.keys(outflowsPerDay)];
-    inflowsVsOutflowsPerDayLabels.sort((a, b) => a.localeCompare(b));
+    const inflowsVsOutflowsPerDayLabels = [... new Set([...Object.keys(inflowsPerDay), ...Object.keys(outflowsPerDay)])];
+    inflowsVsOutflowsPerDayLabels.sort((a, b) => a - b);
     renderGraph('inflowsVsOutflowsPerDayLine', inflowsVsOutflowsPerDayLabels, [
         {
             label: 'Inflows per day',

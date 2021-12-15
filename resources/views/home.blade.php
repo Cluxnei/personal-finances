@@ -147,7 +147,7 @@
             <canvas id="inflowsVsOutflowsPie" width="400" height="400"></canvas>
         </div>
         <div class="col-12">
-            <canvas id="inflowsVsOutflowsPerDayLine" width="400" height="400"></canvas>
+            <canvas id="inflowsVsOutflowsPerDayLine" width="400" height="100"></canvas>
         </div>
     </div>
 
@@ -242,7 +242,7 @@
                             </div>
                             <div class="card-body" style="height: 480px; overflow-y: auto;">
                                 Balance:<br>
-                                @php($balance = $inflowsPerMonth->get($month)->sum('amount') - $outflows->sum('amount'))
+                                @php($balance = ($inflowsPerMonth->get($month) ?? collect([]))->sum('amount') - $outflows->sum('amount'))
                                 <b class="{{ $balance < 0 ? 'text-danger' : 'text-success' }}">{{ $balance }}</b>
                             </div>
                         </div>
